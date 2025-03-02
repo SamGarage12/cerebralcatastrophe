@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeNinja - Task Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Add Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Audio Elements -->
+    <audio id="newTaskSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="completeTaskSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="deleteTaskSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="completeAllSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="createListSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/1444/1444-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="deleteListSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="reminderSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/1566/1566-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <h1>TimeNinja</h1>
+            </div>
+            <div class="logo-subtitle">Swift. Silent. Productive.</div>
+        </header>
+        
+        <!-- Lists Management -->
+        <div class="lists-management">
+            <div class="list-input-group">
+                <input type="text" id="listInput" placeholder="Enter new list name">
+                <button onclick="createNewList()" class="add-btn">Create List</button>
+            </div>
+        </div>
+
+        <!-- Lists Container -->
+        <div class="lists-container" id="listsContainer">
+            <!-- Lists will be dynamically added here -->
+        </div>
+
+        <!-- Task Input Form Template (will be cloned for each list) -->
+        <template id="taskFormTemplate">
+            <div class="task-form">
+                <div class="form-field">
+                    <input type="text" class="task-input" placeholder="Task Name">
+                    <select class="priority-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <input type="text" class="start-location" placeholder="Starting Location">
+                </div>
+
+                <div class="form-field">
+                    <input type="text" class="end-location" placeholder="Destination">
+                </div>
+
+                <div class="form-field">
+                    <input type="email" class="collaborator-email" placeholder="Collaborator Email">
+                </div>
+
+                <button class="add-task-btn add-btn">Add Task</button>
+            </div>
+
+            <!-- Task Filters -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <!-- Task List -->
+            <ul class="task-list"></ul>
+
+            <!-- Task Stats -->
+            <div class="stats">
+                <p>Total tasks: <span class="total-tasks">0</span></p>
+                <p>Completed tasks: <span class="completed-tasks">0</span></p>
+                <button class="clear-btn">Clear All</button>
+            </div>
+        </template>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
